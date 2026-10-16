@@ -6,6 +6,10 @@ Instead of only showing the raw ingredients for an item, Craft Planner follows t
 
 For example, if you want to craft a Redstone Repeater, the planner can track the complete process from logs, cobblestone and redstone all the way to planks, sticks, Redstone Torches, stone and finally the repeater.
 
+## Documentation
+
+Read the full documentation in the [CraftPlanner Wiki](https://github.com/oepol/CraftPlanner/wiki).
+
 ## Features
 
 - Full crafting chains with intermediate items

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "craftplanner",
+  "version": "${version}",
+  "name": "Craft Planner",
+  "description": "Plan and track crafting goals.",
+  "icon": "assets/craftplanner/icon.png",
+  "authors": [
+    "oepol28"
+  ],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.ole.craftplanner.CraftPlannerClient"
+    ],
+    "modmenu": [
+      "dev.ole.craftplanner.compat.ModMenuIntegration"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": ">=0.163.0+26.3"
+  },
+  "suggests": {
+    "modmenu": ">=21.0.0"
+  }
+}

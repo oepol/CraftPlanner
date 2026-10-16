@@ -1,0 +1,26 @@
+// Optional fallback for hosts where Loom's Unix-domain-socket capability probe is forbidden.
+// Uses the SAME Java sources and official 26.3 classes; no stubs, remapping, or game files in the JAR.
+plugins { id 'java' }
+version = '1.1.0+mc26.3'
+group = 'dev.ole.craftplanner'
+base { archivesName = 'craftplanner' }
+repositories { mavenCentral() }
+sourceSets { main { java.srcDirs = ['src/main/java','src/client/java'] } }
+dependencies {
+    compileOnly fileTree('.build-deps') { include '*.jar' }
+    testImplementation fileTree('.build-deps') { include '*gson*.jar' }
+    testImplementation platform('org.junit:junit-bom:5.13.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+def modVersion = project.version
+processResources { inputs.property 'version',modVersion; filesMatching('fabric.mod.json') { expand version: modVersion } }
+java { withSourcesJar(); sourceCompatibility = JavaVersion.VERSION_25; targetCompatibility = JavaVersion.VERSION_25 }
+tasks.withType(JavaCompile).configureEach { options.release = 25; options.encoding = 'UTF-8' }
+test { useJUnitPlatform() }
+def minecraftInput = file('.build-deps/minecraft-client.jar')
+tasks.named('compileJava') {
+    doFirst { if (!minecraftInput.exists()) throw new GradleException('Run python3 build-support/fetch-deps.py first.') }
+}
+
+jar { from("LICENSE") { rename { "LICENSE_craftplanner" } } }

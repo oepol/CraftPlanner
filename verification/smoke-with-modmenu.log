@@ -1,2 +1,0 @@
-PASS: 41 mod classes linked; Fabric client entrypoint constructed; no game/dependency classes bundled.
-Not tested: Fabric event initialization, renderer, real world, network connection.
